@@ -1,10 +1,9 @@
 /**
  * @Author Vladimir Hardy
+ * @TODO set up and connect a database for accountNum and userPin
  */
 package sample;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class Login {
 
@@ -12,56 +11,19 @@ public class Login {
     private int userPin;
 
     /**
-     * @param input Scanner that allows for user input
-     * @return true if the user matches a pin and account number on database
-     * @brief Prompts the user to login and grants access to account based on their credentials
+     * @return true if the user matches a pin and account number on database (not set up yet)
+     * @brief Prompts the user to login and grants access to account based on their credentials through the GUI interface
      */
-    public boolean userCredentials(Scanner input) {
-
-        boolean reLoop;
-        boolean reLoopLogin;
-        do {
-            System.out.println("Please enter your account number below:");
-            do {
-                try {
-                    accountNum = input.nextInt();
-                    //check if accountNum matches whats on the database
-                } catch (InputMismatchException ex) {
-                    System.out.println("Please enter a number and try again");
-                    reLoop = true;
-                    input.nextLine();
-                    continue;
-                }
-                reLoop = false;
-            }
-            while (reLoop);
-            System.out.println("Please enter your pin below:");
-            do {
-                try {
-                    userPin = input.nextInt();
-                } catch (InputMismatchException ex) {
-                    System.out.println("Please enter a number and try again");
-                    reLoop = true;
-                    input.nextLine();
-                    continue;
-                }
-                reLoop = false;
-            }
-            while (reLoop);
-
-            int accountNumDB = 0; //Connect database to these values and set them appropriately
-            int userPinDB = 0;
-            if (accountNum == accountNumDB && userPin == userPinDB) {
-                System.out.println("Access Granted");
-                reLoopLogin = false;
-            } else {
-                System.out.println("Incorrect Account number or Pin, please try again");
-                reLoopLogin = true;
-            }
+    public boolean userCredentials(int username, int password) {
+        //System.out.println(username + " " + password);
+        if(username == accountNum && password == userPin) {
+            return true;
         }
-        while(reLoopLogin);
-        return true;
+        else {
+            return false;
+        }
     }
+
 
     /**
      * @return accountNum

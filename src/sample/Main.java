@@ -34,14 +34,8 @@ public class Main extends Application {
      * @brief the main method for the ATM, calls other classes here
      */
     public static void main(String[] args) throws SQLException {
-        Scanner input = new Scanner(System.in);
-        //launch(args);
-        Login lg = new Login();
-        MainMenu mm = new MainMenu();
-        boolean access = lg.userCredentials(input);
-        if (access) {
-            mm.displayOptions(input);
-        }
-        input.close();
+        launch(args);
+
+
     }
 }

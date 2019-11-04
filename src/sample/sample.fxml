@@ -3,6 +3,33 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.PasswordField?>
 <GridPane fx:controller="sample.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="304.0">
+
+        <children>
+            <TextField fx:id="accountNum" layoutX="130.0" layoutY="10.0" />
+            <Label layoutX="10.0" layoutY="13.0" text="Account Number:" >
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Label>
+
+            <PasswordField fx:id="userPin" layoutX="130.0" layoutY="60.0" />
+            <Label layoutX="10.0" layoutY="63.0" text="Pin:" >
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Label>
+
+            <Button fx:id="btn" layoutX="120.0" layoutY="115.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="71.0" text="Submit" onMouseClicked="#handleButtonAction" />
+            <Label fx:id="stringAnswer" layoutX="40" layoutY="170" text="Please ensure that you are using numbers" visible="false" textFill="red" />
+            <Label fx:id="stringAnswer2" layoutX="40" layoutY="185" text="when entering values for the credentials." visible="false" textFill="red" />
+
+        </children>
+    </AnchorPane>
 </GridPane>
