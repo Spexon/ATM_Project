@@ -9,9 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 
 public class Main extends Application {
