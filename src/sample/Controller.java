@@ -28,22 +28,21 @@ public class Controller implements Initializable {
      * @brief Gets user input from text boxes and matches with information on the database
      */
     @FXML
-    private void handleButtonAction(MouseEvent event ) {
+    private void handleButtonAction(MouseEvent event) {
         Login lg = new Login();
 
         try {
             int acctNum = Integer.parseInt(accountNum.getText());
             int uPin = Integer.parseInt(userPin.getText());
-            System.out.println(lg.userCredentials(acctNum,uPin));
+
+            System.out.println(lg.userCredentials(acctNum, uPin));
             stringAnswer.setVisible(false);
             stringAnswer2.setVisible(false);
             btn.setText("Submitted");
-        }
-        catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             stringAnswer.setVisible(true);
             stringAnswer2.setVisible(true);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
     }

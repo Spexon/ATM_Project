@@ -22,14 +22,13 @@ public class Login {
         ArrayList<Integer> accountNum = new ArrayList<>();
         ArrayList<Integer> userPin = new ArrayList<>();
 
-        final String JDBC_DRIVER = "org.h2.Driver";   //Try changing .FGCU-STUDENT on home computer
-        final String DB_URL = "jdbc:h2:C:/Users/vvhardy0143.FGCU-STUDENT/OneDrive - Florida Gulf Coast University/COP 3003/ATM_Project/res2";
+        final String JDBC_DRIVER = "org.h2.Driver";
+        final String DB_URL = "jdbc:h2:C:/Users/Windows/OneDrive - Florida Gulf Coast University/COP 3003/ATM_Project2/res2/BankDatabase";
         //  Database credentials
         final String USER = "";
         final String PASS = "";
         Connection conn;
-        Statement stmt = null;
-
+        Statement stmt;
         try {
 
             // STEP 1: Register JDBC driver
@@ -37,15 +36,17 @@ public class Login {
 
             //STEP 2: Open a connection
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement();
 
             //STEP 3: Execute a query
-            String SQL = "SELECT * FROM BankDatabase";
+
+            String SQL = "SELECT * FROM BankDBTable";
             ResultSet rs = stmt.executeQuery(SQL);
-            while(rs.next()) {
+
+            while (rs.next()) {
                 accountNum.add(rs.getInt("accountNum"));
                 userPin.add(rs.getInt("userPin"));
             }
-            System.out.println(userPin.get(0));
 
             // STEP 4: Clean-up environment
             stmt.close();
@@ -55,10 +56,9 @@ public class Login {
             e.printStackTrace();
         }
 
-        if(username == accountNum.get(0) && password == userPin.get(0)) {
+        if (username == accountNum.get(0) && password == userPin.get(0)) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
