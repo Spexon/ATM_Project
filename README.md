@@ -22,5 +22,10 @@ Over the course of 4 months I will work on following a tutorial for creating an 
   <li> Polish code and use checkstyle </li>
 </ul>
 
+## Demonstration
+![Login Screen](https://gyazo.com/aa1e026e807ceac96148e23271982be3.png)
+
 ## Diagram
 ![UML Diagram](https://gyazo.com/853fe18220dd3e2a59daaabbe7b76b02.png)
+
+
