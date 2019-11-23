@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
 
 import java.awt.*;
 import java.net.URL;
@@ -18,9 +19,19 @@ public class Controller implements Initializable {
 
     public TextField accountNum;
     public TextField userPin;
-    public Button btn;
     public Label stringAnswer;
     public Label stringAnswer2;
+    public Button btn;
+    public Button btn0;
+    public Button btn1;
+    public Button btn2;
+    public Button btn3;
+    public Button btn4;
+    public Button btn5;
+    public Button btn6;
+    public Button btn7;
+    public Button btn8;
+    public Button btn9;
 
 
     /**
@@ -30,21 +41,26 @@ public class Controller implements Initializable {
     @FXML
     private void handleButtonAction(MouseEvent event) {
         Login lg = new Login();
+        MainMenu mm = new MainMenu();
 
         try {
             int acctNum = Integer.parseInt(accountNum.getText());
             int uPin = Integer.parseInt(userPin.getText());
-
-            System.out.println(lg.userCredentials(acctNum, uPin));
+            if(lg.userCredentials(acctNum, uPin)) {
+                mm.displayOptions();
+            }
             stringAnswer.setVisible(false);
             stringAnswer2.setVisible(false);
-            btn.setText("Submitted");
         } catch (NumberFormatException e) {
             stringAnswer.setVisible(true);
             stringAnswer2.setVisible(true);
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    public void keypad() {
+        System.out.println("here");
     }
 
     @Override

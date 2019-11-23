@@ -1,5 +1,6 @@
 /**
  * @Author Vladimir Hardy
+ * This Project is following a tutorial
  * @TODO Make the ATM a GUI interface instead of console based
  */
 package sample;
@@ -23,7 +24,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 441, 416));
         primaryStage.show();
     }
 

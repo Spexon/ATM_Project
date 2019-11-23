@@ -1,35 +1,110 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.PasswordField?>
-<GridPane fx:controller="sample.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="304.0">
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="416.0" prefWidth="441.0">
 
         <children>
-            <TextField fx:id="accountNum" layoutX="130.0" layoutY="10.0" />
-            <Label layoutX="10.0" layoutY="13.0" text="Account Number:" >
+            <TextField fx:id="accountNum" layoutX="208.0" layoutY="69.0" />
+            <Label layoutX="40.0" layoutY="68.0" text="Account Number:">
                 <font>
-                    <Font size="14.0" />
+                    <Font size="18.0" />
                 </font>
             </Label>
 
-            <PasswordField fx:id="userPin" layoutX="130.0" layoutY="60.0" />
-            <Label layoutX="10.0" layoutY="63.0" text="Pin:" >
+            <PasswordField fx:id="userPin" layoutX="208.0" layoutY="124.0" />
+            <Label layoutX="40.0" layoutY="123.0" text="Pin:">
                 <font>
-                    <Font size="14.0" />
+                    <Font size="18.0" />
                 </font>
             </Label>
 
-            <Button fx:id="btn" layoutX="120.0" layoutY="115.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="71.0" text="Submit" onMouseClicked="#handleButtonAction" />
-            <Label fx:id="stringAnswer" layoutX="40" layoutY="170" text="Please ensure that you are using numbers" visible="false" textFill="red" />
-            <Label fx:id="stringAnswer2" layoutX="40" layoutY="185" text="when entering values for the credentials." visible="false" textFill="red" />
+            <Button fx:id="btn" layoutX="70.0" layoutY="361.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" prefHeight="37.0" prefWidth="89.0" text="Enter">
+            <font>
+               <Font size="16.0" />
+            </font></Button>
+            <Label fx:id="stringAnswer" layoutX="79.0" layoutY="158.0" text="Please ensure that you are using numbers" textFill="red" visible="false">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+            <Label fx:id="stringAnswer2" layoutX="79.0" layoutY="173.0" text="when entering values for the credentials." textFill="red" visible="false">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+         <Label layoutX="179.0" layoutY="23.0" text="Welcome!">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Separator layoutY="199.0" prefHeight="0.0" prefWidth="441.0" />
+         <Separator layoutX="180.0" layoutY="200.0" orientation="VERTICAL" prefHeight="216.0" prefWidth="7.0" />
+         <Button fx:id="btn1" layoutX="20.0" layoutY="215.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="1">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Button>
+         <Button fx:id="btn2" layoutX="71.0" layoutY="215.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="2">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Button>
+         <Button fx:id="btn3" layoutX="123.0" layoutY="215.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="3">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Button>
+         <Button fx:id="btn4" layoutX="20.0" layoutY="266.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="4">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Button>
+         <Button fx:id="btn5" layoutX="71.0" layoutY="266.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="5">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Button>
+         <Button fx:id="btn6" layoutX="123.0" layoutY="266.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="6">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Button>
+         <Button fx:id="btn7" layoutX="20.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="7">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Button>
+         <Button fx:id="btn8" layoutX="71.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="8">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Button>
+         <Button fx:id="btn9" layoutX="123.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="9">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Button>
+         <Button fx:id="btn0" layoutX="22.0" layoutY="361.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="0">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Button>
 
         </children>
     </AnchorPane>
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
 </GridPane>

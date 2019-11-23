@@ -18,7 +18,7 @@ public class Login {
      * @brief Prompts the user to login and grants access to account based on their credentials through the GUI interface
      */
     public boolean userCredentials(int username, int password) {
-        System.out.println(username + " " + password);
+        //System.out.println(username + " " + password);
         ArrayList<Integer> accountNum = new ArrayList<>();
         ArrayList<Integer> userPin = new ArrayList<>();
 
@@ -57,6 +57,7 @@ public class Login {
         }
 
         if (username == accountNum.get(0) && password == userPin.get(0)) {
+            System.out.println("Login Successful");
             return true;
         } else {
             return false;
