@@ -55,12 +55,13 @@ public class Login {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-
-        if (username == accountNum.get(0) && password == userPin.get(0)) {
-            System.out.println("Login Successful");
-            return true;
-        } else {
-            return false;
+        for(int i = 0; i<accountNum.size(); i++) {
+            if (username == accountNum.get(i) && password == userPin.get(i)) {
+                System.out.println("Login Successful");
+                return true;
+            }
         }
+        System.out.println("Incorrect Login");
+        return false;
     }
 }
