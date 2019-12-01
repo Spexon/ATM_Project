@@ -12,7 +12,7 @@ public class MainMenu {
      */
     public void displayOptions() {
 
-
+        System.out.println("Display Options");
 
 
         /*

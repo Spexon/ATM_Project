@@ -55,7 +55,7 @@ public class Login {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-        for(int i = 0; i<accountNum.size(); i++) {
+        for (int i = 0; i < accountNum.size(); i++) {
             if (username == accountNum.get(i) && password == userPin.get(i)) {
                 System.out.println("Login Successful");
                 return true;

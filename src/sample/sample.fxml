@@ -3,104 +3,171 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" prefHeight="414.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-    <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="416.0" prefWidth="441.0" GridPane.columnIndex="2">
+<GridPane alignment="center" prefHeight="416.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="416.0" prefWidth="441.0" GridPane.columnIndex="4">
 
-        <children>
-            <PasswordField fx:id="accountNum" layoutX="198.0" layoutY="67.0" />
-            <Label layoutX="30.0" layoutY="66.0" text="Account Number:">
-                <font>
-                    <Font size="18.0" />
-                </font>
-            </Label>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ababab" height="200.0" layoutX="-12.0" stroke="BLACK" strokeType="INSIDE" width="441.0" />
+        <PasswordField fx:id="accountNum" editable="false" layoutX="198.0" layoutY="67.0" />
+        <Label fx:id="acctNumLabel" layoutX="30.0" layoutY="66.0" text="Account Number:">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
 
-            <PasswordField fx:id="userPin" layoutX="198.0" layoutY="122.0" />
-            <Label layoutX="30.0" layoutY="121.0" text="Pin:">
-                <font>
-                    <Font size="18.0" />
-                </font>
-            </Label>
-
-            <Button fx:id="btn" layoutX="63.0" layoutY="361.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" prefHeight="37.0" prefWidth="89.0" text="Enter">
-            <font>
-               <Font size="16.0" />
-            </font></Button>
-            <Label fx:id="stringAnswer" layoutX="69.0" layoutY="156.0" text="Please ensure that you are using numbers" textFill="red" visible="false">
-            <font>
-               <Font size="14.0" />
-            </font></Label>
-            <Label fx:id="stringAnswer2" layoutX="69.0" layoutY="171.0" text="when entering values for the credentials." textFill="red" visible="false">
-            <font>
-               <Font size="14.0" />
-            </font></Label>
-         <Label layoutX="169.0" layoutY="21.0" text="Welcome!">
-            <font>
+        <PasswordField fx:id="userPin" editable="false" layoutX="198.0" layoutY="122.0" />
+        <Label fx:id="welcomeLabel" layoutX="169.0" layoutY="21.0" text="Welcome!">
+           <font>
                <Font size="18.0" />
-            </font>
-         </Label>
-         <Separator layoutX="-10.0" layoutY="199.0" prefHeight="1.0" prefWidth="421.0" />
-         <Separator layoutX="170.0" layoutY="198.0" orientation="VERTICAL" prefHeight="216.0" prefWidth="7.0" />
-         <Button fx:id="btn1" layoutX="12.0" layoutY="215.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="1">
+           </font>
+        </Label>
+        <Label fx:id="pinLabel" layoutX="30.0" layoutY="121.0" text="Pin:">
             <font>
-               <Font size="16.0" />
+                <Font size="18.0" />
             </font>
-         </Button>
-         <Button fx:id="btn2" layoutX="63.0" layoutY="215.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="2">
-            <font>
-               <Font size="16.0" />
-            </font>
-         </Button>
-         <Button fx:id="btn3" layoutX="115.0" layoutY="215.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="3">
-            <font>
-               <Font size="16.0" />
-            </font>
-         </Button>
-         <Button fx:id="btn4" layoutX="12.0" layoutY="266.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="4">
-            <font>
-               <Font size="16.0" />
-            </font>
-         </Button>
-         <Button fx:id="btn5" layoutX="63.0" layoutY="266.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="5">
-            <font>
-               <Font size="16.0" />
-            </font>
-         </Button>
-         <Button fx:id="btn6" layoutX="115.0" layoutY="266.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="6">
-            <font>
-               <Font size="16.0" />
-            </font>
-         </Button>
-         <Button fx:id="btn7" layoutX="12.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="7">
-            <font>
-               <Font size="16.0" />
-            </font>
-         </Button>
-         <Button fx:id="btn8" layoutX="63.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="8">
-            <font>
-               <Font size="16.0" />
-            </font>
-         </Button>
-         <Button fx:id="btn9" layoutX="115.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="9">
-            <font>
-               <Font size="16.0" />
-            </font>
-         </Button>
-         <Button fx:id="btn0" layoutX="13.0" layoutY="361.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="0">
-             <font>
-               <Font size="16.0" />
-            </font>
-         </Button>
+        </Label>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="216.0" layoutX="-12.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="441.0" />
 
-        </children>
+        <Button fx:id="btn" layoutX="63.0" layoutY="361.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" prefHeight="37.0" prefWidth="89.0" text="Enter">
+        <font>
+            <Font size="18.0" />
+        </font>
+        </Button>
+        <Button fx:id="btn1" layoutX="12.0" layoutY="215.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="1">
+           <font>
+               <Font size="18.0" />
+           </font>
+        </Button>
+        <Button fx:id="btn2" layoutX="63.0" layoutY="215.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="2">
+           <font>
+               <Font size="18.0" />
+           </font>
+        </Button>
+        <Button fx:id="btn3" layoutX="115.0" layoutY="215.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="3">
+           <font>
+               <Font size="18.0" />
+           </font>
+        </Button>
+        <Button fx:id="btn4" layoutX="12.0" layoutY="266.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="4">
+           <font>
+               <Font size="18.0" />
+           </font>
+        </Button>
+        <Button fx:id="btn5" layoutX="63.0" layoutY="266.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="5">
+           <font>
+               <Font size="18.0" />
+           </font>
+        </Button>
+        <Button fx:id="btn6" layoutX="115.0" layoutY="266.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="6">
+           <font>
+               <Font size="18.0" />
+           </font>
+        </Button>
+        <Button fx:id="btn7" layoutX="12.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="7">
+           <font>
+               <Font size="18.0" />
+           </font>
+        </Button>
+        <Button fx:id="btn8" layoutX="63.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="8">
+           <font>
+               <Font size="18.0" />
+           </font>
+        </Button>
+        <Button fx:id="btn9" layoutX="115.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="9">
+           <font>
+               <Font size="18.0" />
+           </font>
+        </Button>
+        <Button fx:id="btn0" layoutX="13.0" layoutY="361.0" mnemonicParsing="false" onMouseClicked="#keypad" prefHeight="35.0" prefWidth="35.0" text="0">
+            <font>
+                <Font size="18.0" />
+           </font>
+        </Button>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6eb9ff" height="69.0" layoutX="186.0" layoutY="230.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="226.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#404040" height="11.0" layoutX="225.0" layoutY="279.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="149.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6eb9ff" height="69.0" layoutX="188.0" layoutY="328.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="226.0" />
+        <Label layoutX="251.0" layoutY="242.0" text="Take Cash Here">
+           <font>
+               <Font size="14.0" />
+           </font>
+        </Label>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#404040" height="11.0" layoutX="231.0" layoutY="376.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="140.0" />
+        <Label layoutX="239.0" layoutY="341.0" text="Insert Deposit Here">
+           <font>
+               <Font size="14.0" />
+           </font>
+        </Label>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="224.0" layoutX="168.0" layoutY="199.0" stroke="BLACK" strokeType="INSIDE" width="2.0" />
+        <Label fx:id="mainMenuLabel" layoutX="65.0" layoutY="14.0" text="Main menu" visible="false">
+           <font>
+               <Font size="24.0" />
+           </font>
+        </Label>
+        <Label fx:id="balanceLabel" layoutX="91.0" layoutY="51.0" text="1 - View balance" visible="false">
+           <font>
+               <Font size="18.0" />
+           </font>
+        </Label>
+        <Label fx:id="withdrawLabel" layoutX="91.0" layoutY="76.0" text="2 - Withdraw cash" visible="false">
+           <font>
+               <Font size="18.0" />
+           </font>
+        </Label>
+        <Label fx:id="fundsLabel" layoutX="91.0" layoutY="100.0" text="3 - Deposit funds" visible="false">
+           <font>
+               <Font size="18.0" />
+           </font>
+        </Label>
+        <Label fx:id="exitLabel" layoutX="91.0" layoutY="124.0" text="4 - Exit" visible="false">
+           <font>
+               <Font size="18.0" />
+           </font>
+        </Label>
+        <Label fx:id="choiceLabel" layoutX="53.0" layoutY="156.0" text="Enter a choice:" visible="false">
+           <font>
+               <Font size="18.0" />
+           </font>
+        </Label>
+        <TextField fx:id="mmChoice" layoutX="186.0" layoutY="159.0" prefHeight="25.0" prefWidth="45.0" visible="false" />
+      <Label fx:id="errorMessage1" layoutX="107.0" layoutY="162.0" text="Invalid Login, Please try again" textFill="RED" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="errorMessage2pt1" layoutX="273.0" layoutY="105.0" text="Please enter a number" textFill="RED" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="errorMessage2pt2" layoutX="273.0" layoutY="126.0" text="in the given range." textFill="RED" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="delete1" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="22.0" layoutX="350.0" onMouseClicked="#deleteAcctText" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Delete_Button2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="delete2" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="22.0" layoutX="351.0" onMouseClicked="#deletePinText" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Delete_Button2.png" />
+         </image>
+      </ImageView>
+
     </AnchorPane>
    <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
       <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
       <ColumnConstraints maxWidth="23.0" minWidth="0.0" prefWidth="0.0" />
       <ColumnConstraints maxWidth="417.0" minWidth="394.0" prefWidth="417.0" />
