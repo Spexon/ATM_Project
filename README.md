@@ -23,7 +23,7 @@ Over the course of 4 months I will work on following a tutorial for creating an 
 </ul>
 
 ## Demonstration
-![Login Screen](https://gyazo.com/4660d782240aa0a7ecfc2d782fd02420.png)
+![Login Screen](https://gyazo.com/058c03ef26783f0a58c52ba3dd2815cf.png)
 
 ## Diagram
 ![UML Diagram](https://gyazo.com/853fe18220dd3e2a59daaabbe7b76b02.png)
