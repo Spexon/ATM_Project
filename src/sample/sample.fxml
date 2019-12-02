@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" prefHeight="416.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane alignment="center" prefHeight="416.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="416.0" prefWidth="441.0" GridPane.columnIndex="4">
 
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ababab" height="200.0" layoutX="-12.0" stroke="BLACK" strokeType="INSIDE" width="441.0" />
@@ -35,6 +35,16 @@
                 <Font size="18.0" />
             </font>
         </Label>
+      <ImageView fx:id="delete1" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="22.0" layoutX="350.0" layoutY="69.0" onMouseClicked="#deleteAcctText" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Delete_Button2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="delete2" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="22.0" layoutX="351.0" layoutY="124.0" onMouseClicked="#deletePinText" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Delete_Button2.png" />
+         </image>
+      </ImageView>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="216.0" layoutX="-12.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="441.0" />
 
         <Button fx:id="btn" layoutX="63.0" layoutY="361.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" prefHeight="37.0" prefWidth="89.0" text="Enter">
@@ -138,6 +148,11 @@
            </font>
         </Label>
         <TextField fx:id="mmChoice" layoutX="186.0" layoutY="159.0" prefHeight="25.0" prefWidth="45.0" visible="false" />
+      <ImageView fx:id="delete3" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="22.0" layoutX="236.0" layoutY="162.0" onMouseClicked="#deleteChoiceText" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../Delete_Button2.png" />
+         </image>
+      </ImageView>
       <Label fx:id="errorMessage1" layoutX="107.0" layoutY="162.0" text="Invalid Login, Please try again" textFill="RED" visible="false">
          <font>
             <Font size="14.0" />
@@ -153,16 +168,11 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <ImageView fx:id="delete1" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="22.0" layoutX="350.0" onMouseClicked="#deleteAcctText" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Delete_Button2.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="delete2" accessibleRole="BUTTON" fitHeight="20.0" fitWidth="22.0" layoutX="351.0" onMouseClicked="#deletePinText" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Delete_Button2.png" />
-         </image>
-      </ImageView>
+      <Label fx:id="exitMessage" layoutX="79.0" layoutY="74.0" text="Have a nice day!" visible="false">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
 
     </AnchorPane>
    <columnConstraints>

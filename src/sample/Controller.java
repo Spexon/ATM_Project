@@ -11,7 +11,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-
+import java.util.Timer;
+import java.util.TimerTask;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -34,6 +35,8 @@ public class Controller implements Initializable, Screen {
     public Label errorMessage2pt1;
     public ImageView delete1;
     public ImageView delete2;
+    public Label exitMessage;
+    public ImageView delete3;
     private int btnClicked;
     private int acctNum;
     private int goToNextTextField = 0;
@@ -52,7 +55,8 @@ public class Controller implements Initializable, Screen {
 
     /**
      * @param event
-     * @brief Gets user input from text boxes and matches with information on the database
+     * @brief Gets user input from TextFields and matches with information on the database, if information is correct,
+     * the program continues to display more options for that specified user account.
      */
     @FXML
     private void handleButtonAction(MouseEvent event) {
@@ -67,6 +71,7 @@ public class Controller implements Initializable, Screen {
             } else if (goToNextTextField == 1) {
                 int uPin = Integer.parseInt(userPin.getText());
                 if (lg.userCredentials(acctNum, uPin)) {
+                //if (true) { //for school purposes, since database never works
                     displayOptions();
                     return;
                 } else {
@@ -82,7 +87,7 @@ public class Controller implements Initializable, Screen {
                 int menuChoice = Integer.parseInt(mmChoice.getText());
                 switch (menuChoice) {
                     case 1:
-                        bi.displayBalance();
+                        bi.displayBalance(acctNum);
                         mmChoice.clear();
                         break;
                     case 2:
@@ -94,9 +99,9 @@ public class Controller implements Initializable, Screen {
                         mmChoice.clear();
                         break;
                     case 4:
-                        System.out.println("Have a nice day!"); //Replace to a label
+                        returnToStart();
                         mmChoice.clear();
-                        break;
+                        return;
                     default:
                         errorMessage2pt1.setVisible(true);
                         errorMessage2pt2.setVisible(true);
@@ -110,16 +115,32 @@ public class Controller implements Initializable, Screen {
         }
     }
 
-    @FXML
-    private void deletePinText() {
-        userPin.clear();
-    }
-
+    /**
+     * @brief deletes text for account number if the user presses the delete button
+     */
     @FXML
     private void deleteAcctText() {
         accountNum.clear();
+        goToNextTextField = 0;
     }
 
+    /**
+     * @brief deletes text for pin number if the user presses the delete button
+     */
+    @FXML
+    private void deletePinText() {
+        userPin.clear();
+        goToNextTextField = 1;
+    }
+
+    @FXML
+    private void deleteChoiceText() {
+        mmChoice.clear();
+    }
+
+    /**
+     * @brief hides all login text and shows personal menu options for the user
+     */
     private void displayOptions() {
         errorMessage1.setVisible(false);
         accountNum.setVisible(false);
@@ -136,7 +157,43 @@ public class Controller implements Initializable, Screen {
         fundsLabel.setVisible(true);
         withdrawLabel.setVisible(true);
         exitLabel.setVisible(true);
+        delete3.setVisible(true);
         goToNextTextField = 2;
+    }
+
+    /**
+     * @brief clears personal user information, and brings up login information for the new user after a short delay
+     */
+    private void returnToStart() {
+        mainMenuLabel.setVisible(false);
+        mmChoice.setVisible(false);
+        balanceLabel.setVisible(false);
+        choiceLabel.setVisible(false);
+        fundsLabel.setVisible(false);
+        withdrawLabel.setVisible(false);
+        exitLabel.setVisible(false);
+        delete3.setVisible(false);
+        exitMessage.setVisible(true);
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                exitMessage.setVisible(false);
+                accountNum.setVisible(true);
+                userPin.setVisible(true);
+                welcomeLabel.setVisible(true);
+                acctNumLabel.setVisible(true);
+                pinLabel.setVisible(true);
+                delete1.setVisible(true);
+                delete2.setVisible(true);
+            }
+        };
+        timer.schedule(task,5000);
+        accountNum.clear();
+        userPin.clear();
+        goToNextTextField = 0;
+
+
     }
 
     /**
