@@ -10,9 +10,6 @@ import java.util.ArrayList;
 
 public class Login {
 
-    //private int accountNum;
-    //private int userPin;
-
     /**
      * @return true if the user matches a pin and account number on database (not set up yet)
      * @brief Prompts the user to login and grants access to account based on their credentials through the GUI interface
@@ -23,7 +20,7 @@ public class Login {
         ArrayList<Integer> userPin = new ArrayList<>();
 
         final String JDBC_DRIVER = "org.h2.Driver";
-        final String DB_URL = "jdbc:h2:C:/Users/Windows/OneDrive - Florida Gulf Coast University/COP 3003/ATM_Project2/res2/BankDatabase";
+        final String DB_URL = "jdbc:h2:./res2/BankDatabase";
         //  Database credentials
         final String USER = "";
         final String PASS = "";

@@ -11,7 +11,7 @@ public class BalanceInquiry {
 
         double balance = 0;
         final String JDBC_DRIVER = "org.h2.Driver";
-        final String DB_URL = "jdbc:h2:C:/Users/Windows/OneDrive - Florida Gulf Coast University/COP 3003/ATM_Project2/res2/BankDatabase";
+        final String DB_URL = "jdbc:h2:./res2/BankDatabase";
         //  Database credentials
         final String USER = "";
         final String PASS = "";
