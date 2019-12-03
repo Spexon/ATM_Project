@@ -37,6 +37,9 @@ public class Controller implements Initializable, Screen {
     public ImageView delete2;
     public Label exitMessage;
     public ImageView delete3;
+    public Label currentBalLabel;
+    public Label balanceToDisplay;
+    public Button returnToMainMenuBtn;
     private int btnClicked;
     private int acctNum;
     private int goToNextTextField = 0;
@@ -72,7 +75,7 @@ public class Controller implements Initializable, Screen {
                 int uPin = Integer.parseInt(userPin.getText());
                 if (lg.userCredentials(acctNum, uPin)) {
                 //if (true) { //for school purposes, since database never works
-                    displayOptions();
+                    displayMenuOptions();
                     return;
                 } else {
                     errorMessage1.setVisible(true);
@@ -87,7 +90,11 @@ public class Controller implements Initializable, Screen {
                 int menuChoice = Integer.parseInt(mmChoice.getText());
                 switch (menuChoice) {
                     case 1:
-                        bi.displayBalance(acctNum);
+                        hideAllLayers();
+                        balanceToDisplay.setText("$" + bi.displayBalance(acctNum));
+                        currentBalLabel.setVisible(true);
+                        balanceToDisplay.setVisible(true);
+                        returnToMainMenuBtn.setVisible(true);
                         mmChoice.clear();
                         break;
                     case 2:
@@ -133,16 +140,43 @@ public class Controller implements Initializable, Screen {
         goToNextTextField = 1;
     }
 
+    /**
+     * @brief deletes text for choice number if the user presses the delete button
+     */
     @FXML
     private void deleteChoiceText() {
         mmChoice.clear();
     }
 
+
+    private void hideAllLayers() {
+        errorMessage1.setVisible(false);
+        accountNum.setVisible(false);
+        userPin.setVisible(false);
+        welcomeLabel.setVisible(false);
+        acctNumLabel.setVisible(false);
+        pinLabel.setVisible(false);
+        delete1.setVisible(false);
+        delete2.setVisible(false);
+        mainMenuLabel.setVisible(false);
+        mmChoice.setVisible(false);
+        balanceLabel.setVisible(false);
+        choiceLabel.setVisible(false);
+        fundsLabel.setVisible(false);
+        withdrawLabel.setVisible(false);
+        exitLabel.setVisible(false);
+        delete3.setVisible(false);
+    }
+
     /**
      * @brief hides all login text and shows personal menu options for the user
      */
-    private void displayOptions() {
+    @FXML
+    private void displayMenuOptions() {
         errorMessage1.setVisible(false);
+        returnToMainMenuBtn.setVisible(false);
+        currentBalLabel.setVisible(false);
+        balanceToDisplay.setVisible(false);
         accountNum.setVisible(false);
         userPin.setVisible(false);
         welcomeLabel.setVisible(false);

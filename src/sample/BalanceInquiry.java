@@ -7,8 +7,8 @@ import java.sql.*;
 
 public class BalanceInquiry {
 
-    public double displayBalance(int acctNum) {
-        System.out.println("In Balance");
+    double displayBalance(int acctNum) {
+
         double balance = 0;
         final String JDBC_DRIVER = "org.h2.Driver";
         final String DB_URL = "jdbc:h2:C:/Users/Windows/OneDrive - Florida Gulf Coast University/COP 3003/ATM_Project2/res2/BankDatabase";
@@ -16,7 +16,7 @@ public class BalanceInquiry {
         final String USER = "";
         final String PASS = "";
         Connection conn;
-        Statement stmt;
+        PreparedStatement pstmt;
         try {
 
             // STEP 1: Register JDBC driver
@@ -24,19 +24,21 @@ public class BalanceInquiry {
 
             //STEP 2: Open a connection
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            stmt = conn.createStatement();
+
 
             //STEP 3: Execute a query
+            String SQL = "SELECT TOTALBALANCE FROM UserAccount WHERE ACCOUNTNUM = (?)";
 
-            String SQL = "SELECT TOTALBALANCE FROM userInformation WHERE ACCOUNTNUM = " + acctNum;
-            ResultSet rs = stmt.executeQuery(SQL);
-
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setInt(1,acctNum);
+            pstmt.executeQuery();
+            ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                balance = rs.getDouble(SQL);
+                balance = rs.getDouble("TOTALBALANCE");
             }
 
             // STEP 4: Clean-up environment
-            stmt.close();
+            pstmt.close();
             conn.close();
 
         } catch (ClassNotFoundException | SQLException e) {
