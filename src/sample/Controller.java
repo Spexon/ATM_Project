@@ -35,11 +35,26 @@ public class Controller implements Initializable, Screen {
     public Label errorMessage2pt1;
     public ImageView delete1;
     public ImageView delete2;
-    public Label exitMessage;
     public ImageView delete3;
+    public ImageView delete4;
+    public Label exitMessage;
     public Label currentBalLabel;
     public Label balanceToDisplay;
     public Button returnToMainMenuBtn;
+    public Label withdrawalMenuLabel;
+    public TextField withdrawalChoice;
+    public Label label200;
+    public Label label100;
+    public Label label60;
+    public Label label40;
+    public Label label20;
+    public Label selectWithdrawLabel;
+    public Label label500;
+    public Label errorMessage3;
+    public Label confirmationLabel;
+    public Label balToWithdraw;
+    public Button confirmationNo;
+    public Button confirmationYes;
     private int btnClicked;
     private int acctNum;
     private int goToNextTextField = 0;
@@ -76,6 +91,7 @@ public class Controller implements Initializable, Screen {
                 if (lg.userCredentials(acctNum, uPin)) {
                 //if (true) { //for school purposes, since database never works
                     displayMenuOptions();
+
                     return;
                 } else {
                     errorMessage1.setVisible(true);
@@ -95,19 +111,58 @@ public class Controller implements Initializable, Screen {
                         currentBalLabel.setVisible(true);
                         balanceToDisplay.setVisible(true);
                         returnToMainMenuBtn.setVisible(true);
-                        mmChoice.clear();
                         break;
                     case 2:
-                        wd.withdraw();
-                        mmChoice.clear();
+                        hideAllLayers();
+                        goToNextTextField = 3;
+                        label20.setVisible(true);
+                        label40.setVisible(true);
+                        label60.setVisible(true);
+                        label100.setVisible(true);
+                        label200.setVisible(true);
+                        label500.setVisible(true);
+                        withdrawalChoice.setVisible(true);
+                        withdrawalMenuLabel.setVisible(true);
+                        selectWithdrawLabel.setVisible(true);
+                        returnToMainMenuBtn.setVisible(true);
+                        delete4.setVisible(true);
+                        if(Integer.parseInt(withdrawalChoice.getText()) < 7) {
+                            errorMessage2pt1.setVisible(false);
+                            errorMessage2pt2.setVisible(false);
+                            if(wd.withdraw(Integer.parseInt(accountNum.getText()), Integer.parseInt(withdrawalChoice.getText())) > 0) {
+                                errorMessage3.setVisible(false);
+                                wd.withdrawFromDB(acctNum);
+                                /*hideAllLayers();
+                                confirmationLabel.setVisible(true);
+                                balToWithdraw.setVisible(true);
+                                confirmationNo.setVisible(true);
+                                confirmationYes.setVisible(true);
+                                balToWithdraw.setText(wd.withdraw(Integer.parseInt(accountNum.getText()), Integer.parseInt(withdrawalChoice.getText())));
+                                if(confirmationYes.isPressed()) {
+                                    System.out.println("yes");
+                                    wd.withdrawFromDB(acctNum);
+                                }
+                                if(confirmationNo.isPressed()) {
+                                    System.out.println("no");
+                                    break;
+                                }*/
+                            }
+                            else {
+                                errorMessage3.setVisible(true);
+                            }
+                            withdrawalChoice.clear();
+                        }
+                        else {
+                            errorMessage2pt1.setVisible(true);
+                            errorMessage2pt2.setVisible(true);
+                            withdrawalChoice.clear();
+                        }
                         break;
                     case 3:
                         dp.depositCash();
-                        mmChoice.clear();
                         break;
                     case 4:
                         returnToStart();
-                        mmChoice.clear();
                         return;
                     default:
                         errorMessage2pt1.setVisible(true);
@@ -146,11 +201,30 @@ public class Controller implements Initializable, Screen {
     @FXML
     private void deleteChoiceText() {
         mmChoice.clear();
+        withdrawalChoice.clear();
     }
 
-
+    /**
+     * @brief hides all the layers that may be shown, so that certain layers can overlap others
+     */
     private void hideAllLayers() {
         errorMessage1.setVisible(false);
+        errorMessage2pt1.setVisible(false);
+        errorMessage2pt2.setVisible(false);
+        errorMessage3.setVisible(false);
+        currentBalLabel.setVisible(false);
+        balanceToDisplay.setVisible(false);
+        currentBalLabel.setVisible(false);
+        label20.setVisible(false);
+        label40.setVisible(false);
+        label60.setVisible(false);
+        label100.setVisible(false);
+        label200.setVisible(false);
+        label500.setVisible(false);
+        withdrawalChoice.setVisible(false);
+        withdrawalMenuLabel.setVisible(false);
+        selectWithdrawLabel.setVisible(false);
+        returnToMainMenuBtn.setVisible(false);
         accountNum.setVisible(false);
         userPin.setVisible(false);
         welcomeLabel.setVisible(false);
@@ -158,6 +232,8 @@ public class Controller implements Initializable, Screen {
         pinLabel.setVisible(false);
         delete1.setVisible(false);
         delete2.setVisible(false);
+        delete3.setVisible(false);
+        delete4.setVisible(false);
         mainMenuLabel.setVisible(false);
         mmChoice.setVisible(false);
         balanceLabel.setVisible(false);
@@ -165,7 +241,6 @@ public class Controller implements Initializable, Screen {
         fundsLabel.setVisible(false);
         withdrawLabel.setVisible(false);
         exitLabel.setVisible(false);
-        delete3.setVisible(false);
     }
 
     /**
@@ -173,17 +248,7 @@ public class Controller implements Initializable, Screen {
      */
     @FXML
     private void displayMenuOptions() {
-        errorMessage1.setVisible(false);
-        returnToMainMenuBtn.setVisible(false);
-        currentBalLabel.setVisible(false);
-        balanceToDisplay.setVisible(false);
-        accountNum.setVisible(false);
-        userPin.setVisible(false);
-        welcomeLabel.setVisible(false);
-        acctNumLabel.setVisible(false);
-        pinLabel.setVisible(false);
-        delete1.setVisible(false);
-        delete2.setVisible(false);
+        hideAllLayers();
         mainMenuLabel.setVisible(true);
         mmChoice.setVisible(true);
         balanceLabel.setVisible(true);
@@ -192,6 +257,7 @@ public class Controller implements Initializable, Screen {
         withdrawLabel.setVisible(true);
         exitLabel.setVisible(true);
         delete3.setVisible(true);
+        mmChoice.clear();
         goToNextTextField = 2;
     }
 
@@ -300,8 +366,14 @@ public class Controller implements Initializable, Screen {
             accountNum.appendText(btnValue);
         } else if (goToNextTextField == 1) {
             userPin.appendText(btnValue);
-        } else {
+        } else if (goToNextTextField == 2) {
             mmChoice.appendText(btnValue);
+        }
+        else if (goToNextTextField == 3){
+            withdrawalChoice.appendText(btnValue);
+        }
+        else {
+            System.out.println("Create a new goToNextField block");
         }
     }
 }

@@ -25,7 +25,6 @@ public class BalanceInquiry {
             //STEP 2: Open a connection
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-
             //STEP 3: Execute a query
             String SQL = "SELECT TOTALBALANCE FROM UserAccount WHERE ACCOUNTNUM = (?)";
 
