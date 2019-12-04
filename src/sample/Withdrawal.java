@@ -4,10 +4,10 @@ import java.sql.*;
 
 class Withdrawal {
 
-    private int moneyToWithdraw;
+    //private int moneyToWithdraw;
 
     double withdraw(int acctNum, int amount) {
-        double currentBalance;
+        int moneyToWithdraw = 0;
         switch(amount) {
             case 1:
                 moneyToWithdraw = 20;
@@ -30,20 +30,14 @@ class Withdrawal {
             default:
                 System.out.println("Something went wrong in withdraw switch-case");
         }
-        System.out.println("Withdraw: " + moneyToWithdraw);
         BalanceInquiry bi = new BalanceInquiry();
-        currentBalance = bi.displayBalance(acctNum);
+        double currentBalance = bi.displayBalance(acctNum);
         if (moneyToWithdraw > currentBalance) {
             return -1; //Will run code that will alert the user that they're trying to withdraw more than they have
         }
-        else {
-            currentBalance = currentBalance - moneyToWithdraw;
-        }
+        System.out.println("Old balance: " + currentBalance);
+        currentBalance = currentBalance - moneyToWithdraw;
 
-        return currentBalance;
-    }
-
-    void withdrawFromDB(int acctNum) {
         final String JDBC_DRIVER = "org.h2.Driver";
         final String DB_URL = "jdbc:h2:./res2/BankDatabase";
         //  Database credentials
@@ -60,10 +54,6 @@ class Withdrawal {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
             //STEP 3: Execute a query
-            BalanceInquiry bi = new BalanceInquiry();
-            double currentBalance = bi.displayBalance(acctNum);
-            currentBalance = currentBalance - moneyToWithdraw;
-
             String SQL = "INSERT INTO USERACCOUNT VALUES (?, ?)";
 
             pstmt = conn.prepareStatement(SQL);
@@ -74,9 +64,10 @@ class Withdrawal {
             // STEP 4: Clean-up environment
             pstmt.close();
             conn.close();
-            System.out.println(currentBalance);
+            System.out.println("New balance " + currentBalance);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+        return currentBalance;
     }
 }

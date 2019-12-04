@@ -1,7 +1,6 @@
 /**
  * @Author Vladimir Hardy
  * This Project is following a tutorial
- * @TODO Make the ATM a GUI interface instead of console based
  */
 package sample;
 

@@ -87,50 +87,53 @@ public class Controller implements Initializable, Screen {
             if (goToNextTextField == 0) {
                 acctNum = Integer.parseInt(accountNum.getText());
                 goToNextTextField = 1;
+                return;
             }
-                if (goToNextTextField == 1) {
-                    int uPin = Integer.parseInt(userPin.getText());
-                    if (lg.userCredentials(acctNum, uPin)) {
-                        displayMenuOptions();
-                        return;
-                    } else {
-                        errorMessage1.setVisible(true);
-                        accountNum.clear();
-                        userPin.clear();
-                        goToNextTextField = 0;
-                        return;
-                    }
+            else if (goToNextTextField == 1) {
+                int uPin = Integer.parseInt(userPin.getText());
+                if (lg.userCredentials(acctNum, uPin)) {
+                    displayMenuOptions();
+                    return;
+                } else {
+                    //errorMessage1.setVisible(true);
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid Login Information, Please try again", ButtonType.OK);
+                    alert.show();
+                    accountNum.clear();
+                    userPin.clear();
+                    goToNextTextField = 0;
+                    return;
                 }
-                if (goToNextTextField == 2) {
-                    int menuChoice = Integer.parseInt(mmChoice.getText());
-                    switch (menuChoice) {
-                        case 1:
-                            hideAllLayers();
-                            balanceToDisplay.setText("$" + bi.displayBalance(acctNum));
-                            currentBalLabel.setVisible(true);
-                            balanceToDisplay.setVisible(true);
-                            returnToMainMenuBtn.setVisible(true);
-                            break;
-                        case 2:
-                            hideAllLayers();
-                            goToNextTextField = 3;
-                            label20.setVisible(true);
-                            label40.setVisible(true);
-                            label60.setVisible(true);
-                            label100.setVisible(true);
-                            label200.setVisible(true);
-                            label500.setVisible(true);
-                            withdrawalChoice.setVisible(true);
-                            withdrawalMenuLabel.setVisible(true);
-                            selectWithdrawLabel.setVisible(true);
-                            returnToMainMenuBtn.setVisible(true);
-                            delete4.setVisible(true);
+            }
+
+                int menuChoice = Integer.parseInt(mmChoice.getText());
+                switch (menuChoice) {
+                    case 1:
+                        hideAllLayers();
+                        balanceToDisplay.setText("$" + bi.displayBalance(acctNum));
+                        currentBalLabel.setVisible(true);
+                        balanceToDisplay.setVisible(true);
+                        returnToMainMenuBtn.setVisible(true);
+                        break;
+                    case 2:
+                        hideAllLayers();
+                        goToNextTextField = 3;
+                        label20.setVisible(true);
+                        label40.setVisible(true);
+                        label60.setVisible(true);
+                        label100.setVisible(true);
+                        label200.setVisible(true);
+                        label500.setVisible(true);
+                        withdrawalChoice.setVisible(true);
+                        withdrawalMenuLabel.setVisible(true);
+                        selectWithdrawLabel.setVisible(true);
+                        returnToMainMenuBtn.setVisible(true);
+                        delete4.setVisible(true);
+                        if (!withdrawalChoice.getText().equals("")) {
                             if (Integer.parseInt(withdrawalChoice.getText()) < 7) {
                                 errorMessage2pt1.setVisible(false);
                                 errorMessage2pt2.setVisible(false);
                                 if (wd.withdraw(Integer.parseInt(accountNum.getText()), Integer.parseInt(withdrawalChoice.getText())) > 0) {
                                     errorMessage3.setVisible(false);
-                                    wd.withdrawFromDB(acctNum);
                                     /*hideAllLayers();
                                     confirmationLabel.setVisible(true);
                                     balToWithdraw.setVisible(true);
@@ -147,6 +150,8 @@ public class Controller implements Initializable, Screen {
                                     }*/
                                 } else {
                                     errorMessage3.setVisible(true);
+                                    Alert alert = new Alert(Alert.AlertType.ERROR, "Insufficient funds in your bank account", ButtonType.OK);
+                                    alert.show();
                                 }
                                 withdrawalChoice.clear();
                             } else {
@@ -154,26 +159,27 @@ public class Controller implements Initializable, Screen {
                                 errorMessage2pt2.setVisible(true);
                                 withdrawalChoice.clear();
                             }
-                            break;
-                        case 3:
-                            hideAllLayers();
-                            goToNextTextField = 4;
-                            depositAmountLabel.setVisible(true);
-                            depositCashLabel.setVisible(true);
-                            depositAmount.setVisible(true);
-                            returnToMainMenuBtn.setVisible(true);
-                            dp.depositCash(acctNum, Double.parseDouble(depositAmount.getText()));
-                            depositAmount.clear();
-                            break;
-                        case 4:
-                            returnToStart();
-                            return;
-                        default:
-                            errorMessage2pt1.setVisible(true);
-                            errorMessage2pt2.setVisible(true);
-                            mmChoice.clear();
-                    }
-            }
+                        }
+                        break;
+                    case 3:
+                        hideAllLayers();
+                        goToNextTextField = 4;
+                        depositAmountLabel.setVisible(true);
+                        depositCashLabel.setVisible(true);
+                        depositAmount.setVisible(true);
+                        returnToMainMenuBtn.setVisible(true);
+                        dp.depositCash(acctNum, Double.parseDouble(depositAmount.getText()));
+                        depositAmount.clear();
+                        break;
+                    case 4:
+                        returnToStart();
+                        return;
+                    default:
+                        errorMessage2pt1.setVisible(true);
+                        errorMessage2pt2.setVisible(true);
+                        mmChoice.clear();
+                }
+            System.out.println("End switch");
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR,"Error in Switch", ButtonType.OK);
             alert.show();

@@ -17,14 +17,14 @@
     <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="416.0" prefWidth="441.0" GridPane.columnIndex="4">
 
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ababab" height="200.0" layoutX="-12.0" stroke="BLACK" strokeType="INSIDE" width="441.0" />
-        <PasswordField fx:id="accountNum" layoutX="198.0" layoutY="67.0" />
+        <PasswordField fx:id="accountNum" editable="false" layoutX="198.0" layoutY="67.0" />
         <Label fx:id="acctNumLabel" layoutX="30.0" layoutY="66.0" text="Account Number:">
             <font>
                 <Font size="18.0" />
             </font>
         </Label>
 
-        <PasswordField fx:id="userPin" layoutX="198.0" layoutY="122.0" />
+        <PasswordField fx:id="userPin" editable="false" layoutX="198.0" layoutY="122.0" />
         <Label fx:id="welcomeLabel" layoutX="141.0" layoutY="14.0" prefHeight="35.0" prefWidth="116.0" text="Welcome!">
             <font>
                 <Font size="24.0" />

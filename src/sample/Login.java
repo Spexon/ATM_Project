@@ -1,6 +1,5 @@
 /**
  * @Author Vladimir Hardy
- * @TODO set up and connect a database for accountNum and userPin
  */
 package sample;
 
