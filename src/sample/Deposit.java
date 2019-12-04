@@ -8,7 +8,6 @@ import java.sql.SQLException;
 class Deposit {
 
     void depositCash(int acctNum, double moneyToDeposit) {
-        System.out.println("In Deposit");
 
         final String JDBC_DRIVER = "org.h2.Driver";
         final String DB_URL = "jdbc:h2:./res2/BankDatabase";
@@ -28,8 +27,9 @@ class Deposit {
             //STEP 3: Execute a query
             BalanceInquiry bi = new BalanceInquiry();
             double currentBalance = bi.displayBalance(acctNum);
+            System.out.println("Old balance: " + currentBalance);
             currentBalance = moneyToDeposit + currentBalance;
-            System.out.println(currentBalance);
+
 
             String SQL = "INSERT INTO USERACCOUNT VALUES (?, ?)";
 
@@ -41,7 +41,7 @@ class Deposit {
             // STEP 4: Clean-up environment
             pstmt.close();
             conn.close();
-            System.out.println(currentBalance);
+            System.out.println("New balance " + currentBalance);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

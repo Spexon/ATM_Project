@@ -30,10 +30,6 @@ public class Controller implements Initializable, Screen {
     public Label errorMessage1;
     public Label errorMessage2pt2;
     public Label errorMessage2pt1;
-    public ImageView delete1;
-    public ImageView delete2;
-    public ImageView delete3;
-    public ImageView delete4;
     public Label exitMessage;
     public Label currentBalLabel;
     public Label balanceToDisplay;
@@ -55,6 +51,7 @@ public class Controller implements Initializable, Screen {
     public Label depositCashLabel;
     public Label depositAmountLabel;
     public TextField depositAmount;
+    public Button helpButton;
     private int btnClicked;
     private int acctNum;
     private int goToNextTextField = 0;
@@ -87,19 +84,27 @@ public class Controller implements Initializable, Screen {
             if (goToNextTextField == 0) {
                 acctNum = Integer.parseInt(accountNum.getText());
                 goToNextTextField = 1;
+                accountNum.setOpacity(0.3);
+                accountNum.setDisable(true);
+                userPin.setDisable(false);
+                userPin.setOpacity(1);
                 return;
             }
             else if (goToNextTextField == 1) {
+                accountNum.setOpacity(1);
+                accountNum.setDisable(false);
+                userPin.setDisable(true);
+                userPin.setOpacity(0.3);
                 int uPin = Integer.parseInt(userPin.getText());
                 if (lg.userCredentials(acctNum, uPin)) {
                     displayMenuOptions();
                     return;
                 } else {
-                    //errorMessage1.setVisible(true);
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid Login Information, Please try again", ButtonType.OK);
                     alert.show();
                     accountNum.clear();
                     userPin.clear();
+
                     goToNextTextField = 0;
                     return;
                 }
@@ -127,27 +132,12 @@ public class Controller implements Initializable, Screen {
                         withdrawalMenuLabel.setVisible(true);
                         selectWithdrawLabel.setVisible(true);
                         returnToMainMenuBtn.setVisible(true);
-                        delete4.setVisible(true);
                         if (!withdrawalChoice.getText().equals("")) {
                             if (Integer.parseInt(withdrawalChoice.getText()) < 7) {
                                 errorMessage2pt1.setVisible(false);
                                 errorMessage2pt2.setVisible(false);
                                 if (wd.withdraw(Integer.parseInt(accountNum.getText()), Integer.parseInt(withdrawalChoice.getText())) > 0) {
                                     errorMessage3.setVisible(false);
-                                    /*hideAllLayers();
-                                    confirmationLabel.setVisible(true);
-                                    balToWithdraw.setVisible(true);
-                                    confirmationNo.setVisible(true);
-                                    confirmationYes.setVisible(true);
-                                    balToWithdraw.setText(wd.withdraw(Integer.parseInt(accountNum.getText()), Integer.parseInt(withdrawalChoice.getText())));
-                                    if(confirmationYes.isPressed()) {
-                                        System.out.println("yes");
-                                        wd.withdrawFromDB(acctNum);
-                                    }
-                                    if(confirmationNo.isPressed()) {
-                                        System.out.println("no");
-                                        break;
-                                    }*/
                                 } else {
                                     errorMessage3.setVisible(true);
                                     Alert alert = new Alert(Alert.AlertType.ERROR, "Insufficient funds in your bank account", ButtonType.OK);
@@ -168,8 +158,10 @@ public class Controller implements Initializable, Screen {
                         depositCashLabel.setVisible(true);
                         depositAmount.setVisible(true);
                         returnToMainMenuBtn.setVisible(true);
-                        dp.depositCash(acctNum, Double.parseDouble(depositAmount.getText()));
-                        depositAmount.clear();
+                        if(!depositAmount.getText().equals("")) {
+                            dp.depositCash(acctNum, Double.parseDouble(depositAmount.getText()));
+                            depositAmount.clear();
+                        }
                         break;
                     case 4:
                         returnToStart();
@@ -179,40 +171,12 @@ public class Controller implements Initializable, Screen {
                         errorMessage2pt2.setVisible(true);
                         mmChoice.clear();
                 }
-            System.out.println("End switch");
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Error in Switch", ButtonType.OK);
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Something went wrong :/\nError in switch statement", ButtonType.OK);
             alert.show();
             System.out.println(e);
         }
 
-    }
-
-    /**
-     * @brief deletes text for account number if the user presses the delete button
-     */
-    @FXML
-    private void deleteAcctText() {
-        accountNum.clear();
-        goToNextTextField = 0;
-    }
-
-    /**
-     * @brief deletes text for pin number if the user presses the delete button
-     */
-    @FXML
-    private void deletePinText() {
-        userPin.clear();
-        goToNextTextField = 1;
-    }
-
-    /**
-     * @brief deletes text for choice number if the user presses the delete button
-     */
-    @FXML
-    private void deleteChoiceText() {
-        mmChoice.clear();
-        withdrawalChoice.clear();
     }
 
     /**
@@ -244,10 +208,6 @@ public class Controller implements Initializable, Screen {
         welcomeLabel.setVisible(false);
         acctNumLabel.setVisible(false);
         pinLabel.setVisible(false);
-        delete1.setVisible(false);
-        delete2.setVisible(false);
-        delete3.setVisible(false);
-        delete4.setVisible(false);
         mainMenuLabel.setVisible(false);
         mmChoice.setVisible(false);
         balanceLabel.setVisible(false);
@@ -270,8 +230,9 @@ public class Controller implements Initializable, Screen {
         fundsLabel.setVisible(true);
         withdrawLabel.setVisible(true);
         exitLabel.setVisible(true);
-        delete3.setVisible(true);
         mmChoice.clear();
+        withdrawalChoice.clear();
+        depositAmount.clear();
         goToNextTextField = 2;
     }
 
@@ -286,7 +247,6 @@ public class Controller implements Initializable, Screen {
         fundsLabel.setVisible(false);
         withdrawLabel.setVisible(false);
         exitLabel.setVisible(false);
-        delete3.setVisible(false);
         exitMessage.setVisible(true);
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
@@ -298,8 +258,7 @@ public class Controller implements Initializable, Screen {
                 welcomeLabel.setVisible(true);
                 acctNumLabel.setVisible(true);
                 pinLabel.setVisible(true);
-                delete1.setVisible(true);
-                delete2.setVisible(true);
+                helpButton.setVisible(true);
             }
         };
         timer.schedule(task,5000);
@@ -308,8 +267,15 @@ public class Controller implements Initializable, Screen {
         userPin.setText("");
         userPin.clear();
         goToNextTextField = 0;
+    }
 
-
+    @FXML
+    private void helpAlert() {
+        Alert helpAlert = new Alert(Alert.AlertType.INFORMATION,"Navigation: To navigate this ATM shell, " +
+                "use the keypad or your keyboard to enter values in the text boxes, then press enter to submit each " +
+                "text entry individually on the keypad below.\n\nSample accounts: ---------------------------------------------------\n" +
+                "Account number: 1    Pin: 1\nAccount number: 10  Pin: 4455 \nAccount number: 22  Pin: 5555",ButtonType.CLOSE);
+        helpAlert.show();
     }
 
     /**

@@ -55,7 +55,14 @@ class Withdrawal {
 
             //STEP 3: Execute a query
             String SQL = "INSERT INTO USERACCOUNT VALUES (?, ?)";
+            String SQL2 = "DELETE FROM USERACCOUNT WHERE accountNum = (?)";
 
+            //Delete previous balance
+            pstmt = conn.prepareStatement(SQL2);
+            pstmt.setInt(1,acctNum);
+            pstmt.executeUpdate();
+
+            //Add new balance
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1,acctNum);
             pstmt.setDouble(2, currentBalance);
