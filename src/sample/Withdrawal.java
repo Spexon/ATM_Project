@@ -4,8 +4,12 @@ import java.sql.*;
 
 class Withdrawal {
 
-    //private int moneyToWithdraw;
-
+    /**
+     * @brief Assigns a certain value to what the user types in, and subtracts their balance from the database by this number. Then the new balance is reassigned
+     * @param acctNum The user's account number to make sure the correct balance is being used
+     * @param amount A set amount the user choose (will range from 1 - 6)
+     * @return The user's new balance if they have enough funds to make the transaction, otherwise it returns -1
+     */
     double withdraw(int acctNum, int amount) {
         int moneyToWithdraw = 0;
         switch(amount) {
@@ -75,6 +79,6 @@ class Withdrawal {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-        return currentBalance;
+        return moneyToWithdraw;
     }
 }

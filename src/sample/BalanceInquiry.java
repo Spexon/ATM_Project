@@ -7,6 +7,11 @@ import java.sql.*;
 
 public class BalanceInquiry {
 
+    /**
+     * @brief Displays the current user's balance
+     * @param acctNum Makes sure the user is being displayed the balance associated to their account
+     * @return The users balance from the database.
+     */
     double displayBalance(int acctNum) {
 
         double balance = 0;

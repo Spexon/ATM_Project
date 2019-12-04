@@ -7,7 +7,13 @@ import java.sql.SQLException;
 
 class Deposit {
 
-    void depositCash(int acctNum, double moneyToDeposit) {
+    /**
+     * @brief gets any number a user inputs and adds this number to their current balance
+     * (in a real scenario, the amount they deposit in the slot gets read and added to the database)
+     * @param acctNum user's account number, to make sure the correct account is being added to
+     * @param moneyToDeposit the amount the user decided to add to their account (can be any number)
+     */
+    double depositCash(int acctNum, double moneyToDeposit) {
 
         final String JDBC_DRIVER = "org.h2.Driver";
         final String DB_URL = "jdbc:h2:./res2/BankDatabase";
@@ -32,7 +38,14 @@ class Deposit {
 
 
             String SQL = "INSERT INTO USERACCOUNT VALUES (?, ?)";
+            String SQL2 = "DELETE FROM USERACCOUNT WHERE accountNum = (?)";
 
+            //Delete previous balance
+            pstmt = conn.prepareStatement(SQL2);
+            pstmt.setInt(1,acctNum);
+            pstmt.executeUpdate();
+
+            //Add new balance
             pstmt = conn.prepareStatement(SQL);
             pstmt.setInt(1,acctNum);
             pstmt.setDouble(2, currentBalance);
@@ -48,5 +61,6 @@ class Deposit {
         catch (SQLException e) {
             e.printStackTrace();
         }
+        return moneyToDeposit;
     }
 }

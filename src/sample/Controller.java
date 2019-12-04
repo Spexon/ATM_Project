@@ -8,6 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+
+import java.util.InputMismatchException;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.net.URL;
@@ -27,9 +29,6 @@ public class Controller implements Initializable, Screen {
     public Label fundsLabel;
     public Label exitLabel;
     public Label mainMenuLabel;
-    public Label errorMessage1;
-    public Label errorMessage2pt2;
-    public Label errorMessage2pt1;
     public Label exitMessage;
     public Label currentBalLabel;
     public Label balanceToDisplay;
@@ -43,7 +42,6 @@ public class Controller implements Initializable, Screen {
     public Label label20;
     public Label selectWithdrawLabel;
     public Label label500;
-    public Label errorMessage3;
     public Label confirmationLabel;
     public Label balToWithdraw;
     public Button confirmationNo;
@@ -134,19 +132,20 @@ public class Controller implements Initializable, Screen {
                         returnToMainMenuBtn.setVisible(true);
                         if (!withdrawalChoice.getText().equals("")) {
                             if (Integer.parseInt(withdrawalChoice.getText()) < 7) {
-                                errorMessage2pt1.setVisible(false);
-                                errorMessage2pt2.setVisible(false);
-                                if (wd.withdraw(Integer.parseInt(accountNum.getText()), Integer.parseInt(withdrawalChoice.getText())) > 0) {
-                                    errorMessage3.setVisible(false);
+
+                                double withdrawn = wd.withdraw(Integer.parseInt(accountNum.getText()), Integer.parseInt(withdrawalChoice.getText()));
+                                if (withdrawn > 0) {
+                                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully withdrawn $"+withdrawn+" from your account",ButtonType.OK);
+                                    alert.show();
+                                    displayMenuOptions();
                                 } else {
-                                    errorMessage3.setVisible(true);
                                     Alert alert = new Alert(Alert.AlertType.ERROR, "Insufficient funds in your bank account", ButtonType.OK);
                                     alert.show();
                                 }
                                 withdrawalChoice.clear();
                             } else {
-                                errorMessage2pt1.setVisible(true);
-                                errorMessage2pt2.setVisible(true);
+                                Alert alert = new Alert(Alert.AlertType.ERROR, "Please enter a number within the given range",ButtonType.OK);
+                                alert.show();
                                 withdrawalChoice.clear();
                             }
                         }
@@ -159,21 +158,37 @@ public class Controller implements Initializable, Screen {
                         depositAmount.setVisible(true);
                         returnToMainMenuBtn.setVisible(true);
                         if(!depositAmount.getText().equals("")) {
-                            dp.depositCash(acctNum, Double.parseDouble(depositAmount.getText()));
-                            depositAmount.clear();
+                            double deposit = dp.depositCash(acctNum, Double.parseDouble(depositAmount.getText()));
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully added $" + deposit + " to your account",ButtonType.OK);
+                            alert.show();
+                            displayMenuOptions();
                         }
                         break;
                     case 4:
                         returnToStart();
                         return;
                     default:
-                        errorMessage2pt1.setVisible(true);
-                        errorMessage2pt2.setVisible(true);
+                        Alert alert = new Alert(Alert.AlertType.ERROR, "Please enter a number within the given range",ButtonType.OK);
+                        alert.show();
                         mmChoice.clear();
                 }
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please enter a number within the given range",ButtonType.OK);
+            alert.show();
+            accountNum.clear();
+            userPin.clear();
+        }
+        catch (InputMismatchException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please refrain from using letters in this step",ButtonType.OK);
+            alert.show();
+            accountNum.clear();
+            userPin.clear();
+        }
+        catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR,"Something went wrong :/\nError in switch statement", ButtonType.OK);
             alert.show();
+            accountNum.clear();
+            userPin.clear();
             System.out.println(e);
         }
 
@@ -183,10 +198,6 @@ public class Controller implements Initializable, Screen {
      * @brief hides all the layers that may be shown, so that certain layers can overlap others
      */
     private void hideAllLayers() {
-        errorMessage1.setVisible(false);
-        errorMessage2pt1.setVisible(false);
-        errorMessage2pt2.setVisible(false);
-        errorMessage3.setVisible(false);
         depositAmount.setVisible(false);
         depositCashLabel.setVisible(false);
         depositAmountLabel.setVisible(false);
@@ -269,6 +280,9 @@ public class Controller implements Initializable, Screen {
         goToNextTextField = 0;
     }
 
+    /**
+     * @brief if pressed, an alert box appears giving the user navigational information as well as sample accounts to login with
+     */
     @FXML
     private void helpAlert() {
         Alert helpAlert = new Alert(Alert.AlertType.INFORMATION,"Navigation: To navigate this ATM shell, " +

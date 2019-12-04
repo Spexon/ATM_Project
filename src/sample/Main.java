@@ -1,6 +1,8 @@
 /**
  * @Author Vladimir Hardy
  * This Project is following a tutorial
+ * @TODO Allow the user to press on a field and have it navigate to that field. Once both entries are filled, light up the Enter key on keypad.
+ * @TODO Give feedback once a transaction is complete.
  */
 package sample;
 
