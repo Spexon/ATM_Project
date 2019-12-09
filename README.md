@@ -28,6 +28,12 @@ Over the course of 4 months I will work on following a tutorial for creating an 
 ## Diagram
 ![UML Diagram](https://gyazo.com/853fe18220dd3e2a59daaabbe7b76b02.png)
 
+## Author
+Vladimir Hardy
+
+## Documentation
+This project uses JavaDocs style comment guidelines: https://docs.oracle.com/javase/7/docs/api/
+
 ## Built With
 
 <ul>
