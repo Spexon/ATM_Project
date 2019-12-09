@@ -28,4 +28,20 @@ Over the course of 4 months I will work on following a tutorial for creating an 
 ## Diagram
 ![UML Diagram](https://gyazo.com/853fe18220dd3e2a59daaabbe7b76b02.png)
 
+## Built With
+
+<ul>
+  <li> JetBrains IntelliJ IDEA </li>
+  <li> Java 8 </li>
+  <li> H2 Database </li>
+</ul>
+
+## Acknowledgments
+
+<ul>
+  <li> Stack Overflow </li>
+  <li> Professor Vanselow </li>
+  <li> Professor Greenwell </li>
+  <li> Jose (Peer) </li>
+</ul>
 
