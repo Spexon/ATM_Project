@@ -28,6 +28,14 @@ Over the course of 4 months I will work on following a tutorial for creating an 
 ## Diagram
 ![UML Diagram](https://gyazo.com/853fe18220dd3e2a59daaabbe7b76b02.png)
 
+## Getting Started
+<ol>
+  <li> Ensure Java 8 is installed, if unsure, you may check (if you are using windows) by going to C:\Program Files\Java </li>
+  <li> Download Git from the web, you may accept all the default settings once prompted: https://git-scm.com/downloads </li>
+  <li> Install either the community version for JetBrains IntelliJ IDEA or register for an account and get the ultimate version: https://www.jetbrains.com/idea/ </li>
+  <li> Once IntelliJ has launched, go to Get from version control -> Paste this project's URL (https://github.com/Spexon/ATM_Project) and click clone -> If project does not open, find the file you cloned, navegate to it, and open it. </li>
+</ol>
+
 ## Author
 Vladimir Hardy
 
